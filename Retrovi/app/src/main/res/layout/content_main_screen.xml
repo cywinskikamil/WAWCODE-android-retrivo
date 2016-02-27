@@ -12,25 +12,10 @@
     tools:context="banany.retrovi.MainScreen"
     tools:showIn="@layout/activity_main_screen">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView" />
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView"
-        android:layout_toEndOf="@+id/textView"
-        android:layout_marginTop="54dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Banano"
-            android:id="@+id/textView2"
-            android:layout_gravity="left|top" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="157dp">
     </FrameLayout>
 </RelativeLayout>
