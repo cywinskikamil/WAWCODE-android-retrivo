@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -33,6 +36,7 @@ public class MainScreen extends AppCompatActivity {
     private GoogleApiClient client;
 
     private Uri fileUri;
+    private Parcelable picUri;
 
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
@@ -82,19 +86,41 @@ public class MainScreen extends AppCompatActivity {
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 
+
+    // Save the activity state when it's going to stop.
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelable("picUri", picUri);
+    }
+
+    // Recover the saved state when the activity is recreated.
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        picUri = savedInstanceState.getParcelable("picUri");
+
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
+            if (resultCode == RESULT_OK ) {
                 // Image captured and saved to fileUri specified in the Intent
-                makeText(this, "Image saved to:\n"
-                        , Toast.LENGTH_LONG).show();
+                makeText(this, "Image saved to:\n" +
+                        picUri, Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(), SecondScreen.class).setPackage(picUri.toString()));
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
                 makeText(this, "Photo not saved\n"
                         , Toast.LENGTH_LONG).show();
             } else {
                 // Image capture failed, advise user
+                makeText(this, "Cos sie popsulo\n"
+                        , Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -113,7 +139,7 @@ public class MainScreen extends AppCompatActivity {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE); // create a file to save the image
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file name
-
+                picUri = fileUri;
                 // start the image capture Intent
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
             }
