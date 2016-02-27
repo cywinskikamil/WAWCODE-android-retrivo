@@ -144,11 +144,11 @@ public class MainScreen extends AppCompatActivity {
                 startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
             }
         });
-        FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.jsonik);
-        fab2.setOnClickListener(new View.OnClickListener() {
+        Button button = (Button) findViewById(R.id.jsonik);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), JSONScreen.class);
+                startActivity(new Intent(getApplicationContext(), JSONScreen.class));
             }
         });
 
