@@ -110,8 +110,8 @@ public class MainScreen extends AppCompatActivity {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK ) {
                 // Image captured and saved to fileUri specified in the Intent
-                makeText(this, "Image saved to:\n" +
-                        picUri, Toast.LENGTH_LONG).show();
+               // makeText(this, "Image saved to:\n" +
+               //         picUri, Toast.LENGTH_LONG).show();
                 startActivity(new Intent(getApplicationContext(), SecondScreen.class).setPackage(picUri.toString()));
             } else if (resultCode == RESULT_CANCELED) {
                 // User cancelled the image capture
