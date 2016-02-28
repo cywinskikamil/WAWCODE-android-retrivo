@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,17 +23,21 @@ import java.util.Map;
 
 
 public class JSONCollection {
-    private static TextView tv;
-
     private static Type type = new TypeToken<Map<String, String>>() {
     }.getType();
 
     public static Map<String, String> mapFromJSON(Resources resources) {
         Gson gson = new Gson();
+
+        DownloadTask dlTask = new DownloadTask();
+        dlTask.execute();
+
+        Log.d("debug", " nie udalo sie");
         InputStream inputStream = resources.openRawResource(R.raw.przykladowy);
         return gson.fromJson(new InputStreamReader(inputStream), type);
-    }
 
+
+    }
     public static String JSONFromMap(Context context, Map<String, String> stringStringMap) {
         Gson gson = new GsonBuilder().create();
         return gson.toJson(stringStringMap, type);
