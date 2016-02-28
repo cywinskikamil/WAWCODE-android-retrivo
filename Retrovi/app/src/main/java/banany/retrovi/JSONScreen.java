@@ -37,5 +37,6 @@ public class JSONScreen extends AppCompatActivity {
                     , Toast.LENGTH_LONG).show();
             return;
         }
+        JSONCollection.JSONFromMap(getApplicationContext(), myMap);
     }
 }
