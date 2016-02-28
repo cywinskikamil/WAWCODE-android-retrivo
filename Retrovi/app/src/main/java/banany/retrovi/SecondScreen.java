@@ -18,8 +18,8 @@ public class SecondScreen extends AppCompatActivity {
         ImageView image;
         image = (ImageView) findViewById(R.id.imageView1);
         image.setImageURI(uri);
-//        String img_base64 = JSONCollection.ImageViewToString(image);
-//        DownloadTask dlTask = new DownloadTask();
-//        dlTask.execute(img_base64);
+        String img_base64 = JSONCollection.ImageViewToString(image);
+        DownloadTask dlTask = new DownloadTask();
+        dlTask.execute(img_base64);
     }
 }
