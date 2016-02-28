@@ -4,16 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Pair;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import static android.widget.Toast.makeText;
 /**
@@ -37,7 +30,6 @@ public class JSONScreen extends AppCompatActivity {
             ImageView image = (ImageView) findViewById(R.id.poka);
             Bitmap bMap = BitmapFactory.decodeByteArray(img_base64, 0, img_base64.length);
             image.setImageBitmap(bMap);
-            //image.setImageResource(R.drawable.index);
         } catch(Exception ex) {
             makeText(this, "nie wyszlo"
                     , Toast.LENGTH_LONG).show();

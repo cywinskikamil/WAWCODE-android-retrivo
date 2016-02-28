@@ -14,11 +14,11 @@ import java.io.InputStreamReader;
  * Created by kamil on 28.02.16.
  */
 public class JSONCollection {
-    public Pair<String, byte[]> loadJSONFromFile() {
+    public static Pair<String, byte[]> loadJSONFromFile(Resources resources) {
         JSONParser jsonParser = new JSONParser();
         Pair<String, byte[]> json;
         try {
-            InputStream inputStream = getResources().openRawResource(R.raw.przykladowy);
+            InputStream inputStream = resources.openRawResource(R.raw.przykladowy);
             Object object = jsonParser.parse(new InputStreamReader(inputStream));
             JSONObject jsonObject = (JSONObject) object;
 
